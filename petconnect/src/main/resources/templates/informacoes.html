@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PetConnect | Informações e Suporte</title>
+   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <script
+      src="https://kit.fontawesome.com/a2e0adf6b2.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="logo" width="60">
+        <h2 class="brand">PetConnect</h2>
+        <small>Conectando corações</small>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> Início</a></li>
+          <li><a href="animais.html"><i class="fa-solid fa-paw"></i> Animais</a></li>
+          <li><a href="ongs.html"><i class="fa-solid fa-handshake"></i> Parceiros</a></li>
+          <li><a href="informacoes.html"><i class="fa-solid fa-circle-info"></i> Informações</a></li>
+        </ul>
+      </nav>
+
+    </aside>
+
+
+    <main class="conteudo">
+      <h1>Informações e Suporte</h1>
+      <p class="descricao">
+        Tudo que você precisa saber sobre adoção responsável e nossa plataforma
+      </p>
+
+      <div class="abas">
+        <button class="aba ativa" onclick="abrirAba('como-funciona')">
+          Como Funciona
+        </button>
+        <button class="aba" onclick="abrirAba('faq')">FAQ</button>
+        <button class="aba" onclick="abrirAba('suporte')">Suporte</button>
+      </div>
+
+
+      <section id="como-funciona" class="conteudo-aba ativa">
+        <div class="passos">
+          <div class="passo">
+            <i class="fa-solid fa-user-plus"></i>
+            <h3>Cadastro rápido</h3>
+            <p>Crie sua conta em poucos minutos e comece sua jornada com segurança.</p>
+          </div>
+
+          <div class="passo">
+            <i class="fa-solid fa-paw"></i>
+            <h3>Encontre um amigo</h3>
+            <p>Explore animais disponíveis e filtre por espécie, idade ou localização.</p>
+          </div>
+
+          <div class="passo">
+            <i class="fa-solid fa-comments"></i>
+            <h3>Converse com a ONG</h3>
+            <p>Entre em contato com a ONG ou protetor para conhecer o pet e tirar dúvidas.</p>
+          </div>
+
+          <div class="passo">
+            <i class="fa-solid fa-handshake"></i>
+            <h3>Finalize a adoção</h3>
+            <p>Assine o termo de responsabilidade e leve seu novo amigo para casa.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="conteudo-aba">
+        <h2>Perguntas Frequentes</h2>
+        <div class="faq-item">
+          <h4>❓ Como faço para adotar?</h4>
+          <p>Basta criar uma conta, escolher o pet e entrar em contato com a ONG.</p>
+        </div>
+        <div class="faq-item">
+          <h4>💰 A adoção tem algum custo?</h4>
+          <p>Não. Algumas ONGs apenas pedem doações simbólicas para manter o projeto.</p>
+        </div>
+        <div class="faq-item">
+          <h4>📅 Quanto tempo demora o processo?</h4>
+          <p>Depende da ONG, mas geralmente o processo leva de 3 a 7 dias.</p>
+        </div>
+      </section>
+
+      <section id="suporte" class="conteudo-aba">
+        <h2>Entre em Contato</h2>
+        <p>Precisa de ajuda? Fale conosco através do formulário abaixo:</p>
+        <form class="form-suporte">
+          <input type="text" placeholder="Seu nome" required />
+          <input type="email" placeholder="Seu e-mail" required />
+          <textarea rows="4" placeholder="Descreva seu problema"></textarea>
+          <button type="submit">Enviar Mensagem</button>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      function abrirAba(abaId) {
+        document
+          .querySelectorAll(".conteudo-aba")
+          .forEach((aba) => aba.classList.remove("ativa"));
+        document
+          .querySelectorAll(".aba")
+          .forEach((botao) => botao.classList.remove("ativa"));
+
+        document.getElementById(abaId).classList.add("ativa");
+        event.target.classList.add("ativa");
+      }
+    </script>
+  </body>
+</html>

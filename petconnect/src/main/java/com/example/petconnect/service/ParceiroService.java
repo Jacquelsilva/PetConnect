@@ -3,6 +3,7 @@ package com.example.petconnect.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.petconnect.model.Parceiro;
@@ -11,18 +12,19 @@ import com.example.petconnect.repository.ParceiroRepository;
 @Service
 public class ParceiroService {
 
-    private final ParceiroRepository parceiroRepository;
+    @Autowired 
+    private static ParceiroRepository parceiroRepository;
 
-    public ParceiroService(ParceiroRepository parceiroRepository) {
+   /*  public ParceiroService(ParceiroRepository parceiroRepository) {
         this.parceiroRepository = parceiroRepository;
-    }
+    }*/
 
     public List<Parceiro> listarTodos() {
         return parceiroRepository.findAll();
     }
 
     public Optional<Parceiro> buscarPorId(String id) {
-        return parceiroRepository.findById(id);
+        return parceiroRepository.findById();
     }
 
     public Parceiro salvar(Parceiro parceiro) {

@@ -1,7 +1,6 @@
 /* Importa a fonte "Poppins" */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* RESET GLOBAL */
 * {
   margin: 0;
   padding: 0;
@@ -12,13 +11,12 @@ body {
   background-color: #f9fafb;
 }
 
-/* CONTAINER PRINCIPAL */
 .container {
   display: flex;
   min-height: 100vh;
 }
 
-/* MENU LATERAL FIXO */
+
 .sidebar {
   width: 240px;
   background-color: #ffffff;
@@ -37,7 +35,7 @@ body {
 }
 
 .sidebar .brand {
-  color: #2fa27d;
+  color: #000000;
   font-weight: 600;
   margin-bottom: 4px;
 }
@@ -63,41 +61,40 @@ body {
 
 .sidebar nav ul li a.active,
 .sidebar nav ul li a:hover {
-  color: #2fa27d;
+  color: #042b1f;
 }
 
-/* PERFIL FIXO AO FINAL DA SIDEBAR */
+
 .profile {
-  margin-top: auto; /* empurra o perfil para o final */
   display: flex;
-  flex-direction: column;
   align-items: center;
-  border-top: 1px solid #e5e5e5;
-  padding-top: 20px;
+  gap: 10px;
+  margin-top: auto;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.3s;
 }
 
 .profile img {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
-  border: 2px solid #2fa27d;
-  margin-bottom: 8px;
 }
 
-.profile span {
-  font-weight: 500;
-  color: #333;
-  font-size: 0.9em;
+.profile:hover {
+  background-color: #f0f0f0;
 }
 
-/* CONTEÚDO PRINCIPAL */
+
 .content {
   flex: 1;
   margin-left: 240px;
   padding: 30px;
 }
 
-/* CABEÇALHO */
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -114,7 +111,7 @@ body {
   cursor: pointer;
 }
 
-/* BARRA DE PESQUISA */
+
 .search-bar {
   display: flex;
   align-items: center;
@@ -141,7 +138,6 @@ body {
   cursor: pointer;
 }
 
-/* FILTROS */
 .filter-bar {
   display: flex;
   align-items: center;
@@ -293,73 +289,10 @@ body {
 
 
 
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
 
-body {
-  background-color: #f9fafb;
-}
 
-/* CONTAINER PRINCIPAL */
-.container {
-  display: flex;
-  min-height: 100vh;
-}
 
-/* MENU LATERAL */
-.sidebar {
-  width: 240px;
-  background-color: #ffffff;
-  border-right: 1px solid #e5e5e5;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-}
 
-.logo {
-  text-align: center;
-}
-
-.brand {
-  color: #2fa27d;
-  font-weight: 600;
-  margin-top: 8px;
-}
-
-.sidebar nav ul {
-  list-style: none;
-  margin-top: 40px;
-}
-
-.sidebar nav ul li {
-  margin: 18px 0;
-}
-
-.sidebar nav ul li a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: color 0.3s;
-}
-
-.sidebar nav ul li a.active,
-.sidebar nav ul li a:hover {
-  color: #2fa27d;
-}
-
-/* PERFIL */
 .profile {
   margin-top: auto;
   text-align: center;
@@ -375,14 +308,13 @@ body {
   margin-bottom: 6px;
 }
 
-/* CONTEÚDO */
 .content {
   flex: 1;
   margin-left: 240px;
   padding: 30px;
 }
 
-/* BARRA DE PESQUISA */
+
 .search-bar {
   display: flex;
   align-items: center;
@@ -410,7 +342,7 @@ body {
   color: white;
 }
 
-/* FILTROS */
+
 .filter-bar {
   display: flex;
   align-items: center;
@@ -1134,4 +1066,212 @@ body {
     width: 90%;
     padding: 25px;
   }
+}
+
+
+
+
+
+
+/*informações*/
+
+.perfil {
+  text-align: center;
+  font-size: 15px;
+  color: #444;
+}
+
+.perfil i {
+  font-size: 20px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Conteúdo principal */
+.conteudo {
+  flex: 1;
+  padding: 40px;
+  text-align: center;
+}
+
+.conteudo h1 {
+  color: #2fa27d;
+  font-size: 26px;
+  margin-bottom: 10px;
+}
+
+.descricao {
+  color: #555;
+  font-size: 15px;
+  margin-bottom: 25px;
+}
+
+/* Abas */
+.abas {
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  border-radius: 30px;
+  overflow: hidden;
+  width: fit-content;
+  margin: 0 auto 30px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.aba {
+  padding: 10px 25px;
+  border: none;
+  background: none;
+  font-size: 15px;
+  cursor: pointer;
+  color: #333;
+  transition: 0.3s;
+}
+
+.aba.ativa {
+  background-color: #2fa27d;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Conteúdo das abas */
+.conteudo-aba {
+  display: none;
+  animation: fade 0.4s ease;
+}
+
+.conteudo-aba.ativa {
+  display: block;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Aba: Como Funciona */
+/* Aba: Como Funciona — cards em lista vertical ajustados */
+.passos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 40px;
+  align-items: center;
+  padding-left: 30px; /* espaço entre os cards e o menu lateral */
+}
+
+.passo {
+  background: #fff;
+  width: 85%;
+  max-width: 650px; /* largura mais controlada */
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  transition: 0.3s ease;
+}
+
+.passo:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.passo i {
+  font-size: 30px;
+  color: #2fa27d;
+  min-width: 35px;
+  margin-top: 5px;
+}
+
+.passo h3 {
+  color: #2fa27d;
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+.passo p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .passos {
+    padding-left: 0;
+  }
+
+  .passo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 90%;
+  }
+
+  .passo i {
+    margin-bottom: 8px;
+  }
+}
+
+
+/* Aba: FAQ */
+.faq-item {
+  text-align: left;
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin: 10px auto;
+  max-width: 600px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.faq-item h4 {
+  color: #2fa27d;
+  margin-bottom: 5px;
+}
+
+.faq-item p {
+  color: #555;
+  font-size: 14px;
+}
+
+/* Aba: Suporte */
+.form-suporte {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  margin: 0 auto;
+  gap: 10px;
+}
+
+.form-suporte input,
+.form-suporte textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.form-suporte button {
+  background-color: #2fa27d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.form-suporte button:hover {
+  background-color: #248965;
 }
