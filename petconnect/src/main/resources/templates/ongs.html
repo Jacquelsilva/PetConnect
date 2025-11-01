@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ONGs Parceiras - PetConnect</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- MENU LATERAL -->
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="logo" width="60">
+        <h2 class="brand">PetConnect</h2>
+        <small>Conectando corações</small>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> Início</a></li>
+          <li><a href="animais.html"><i class="fa-solid fa-paw"></i> Animais</a></li>
+          <li><a href="ongs.html"><i class="fa-solid fa-handshake"></i> Parceiros</a></li>
+          <li><a href="#"><i class="fa-solid fa-circle-info"></i> Informações</a></li>
+        </ul>
+      </nav>
+
+      <div class="profile">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="perfil">
+        <span>Perfil</span>
+      </div>
+    </aside>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="content">
+      <header class="header">
+        <div>
+          <h1><span style="color: #2fa27d;">ONGs</span> Parceiras</h1>
+          <p>Conheça instituições que resgatam, cuidam e ajudam animais a encontrar um lar ❤️</p>
+        </div>
+      </header>
+
+      <!-- BARRA DE PESQUISA -->
+      <div class="search-bar">
+        <input type="text" placeholder="Pesquisar ONG..." />
+        <button>🔍</button>
+      </div>
+
+      <!-- FILTRO -->
+      <div class="filter-bar">
+        <label for="tipo">Filtrar por:</label>
+        <select id="tipo">
+          <option>Todos</option>
+          <option>Adoção</option>
+          <option>Resgate</option>
+          <option>Reabilitação</option>
+        </select>
+      </div>
+
+      <!-- LISTA DE ONGs -->
+      <section class="ong-card-list">
+        <!-- ONG 1 -->
+        <div class="ong-card">
+          <div class="ong-card-header">
+            <h3>UPAR Indaiatuba</h3>
+            <span class="tag adoção">Adoção</span>
+          </div>
+          <p class="desc">
+            A UPAR atua em Indaiatuba no resgate, tratamento e adoção responsável de cães e gatos.
+            Promove campanhas e feiras para incentivar o amor e o cuidado com os animais.
+          </p>
+          <p class="highlight">🐶 Doe, adote ou torne-se voluntário!</p>
+          <p><strong>Endereço:</strong> Rua das Primaveras, 120 – Indaiatuba/SP</p>
+          <p><strong>Contato:</strong> (19) 99999-8888</p>
+          <a href="https://www.instagram.com/uparindaiatuba" target="_blank" class="btn">Visitar ONG</a>
+        </div>
+
+        <!-- ONG 2 -->
+        <div class="ong-card">
+          <div class="ong-card-header">
+            <h3>Anjos de Patas</h3>
+            <span class="tag resgate">Resgate</span>
+          </div>
+          <p class="desc">
+            A ONG Anjos de Patas trabalha com resgate, tratamento e reabilitação de animais
+            abandonados, além de promover campanhas de adoção e educação animal.
+          </p>
+          <p class="highlight">🐾 Ajude doando, apadrinhando ou adotando!</p>
+          <p><strong>Endereço:</strong> Rua Esperança, 455 – Indaiatuba/SP</p>
+          <p><strong>Contato:</strong> (19) 98888-7777</p>
+          <a href="https://www.instagram.com/anjosdepatasindaiatuba" target="_blank" class="btn">Visitar ONG</a>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

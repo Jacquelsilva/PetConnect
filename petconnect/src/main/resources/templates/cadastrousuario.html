@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro | PetConnect</title>
+
+  <!-- Seu CSS principal -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="register-page-container">
+    <div class="register-card">
+      <a href="loginusuario.html" class="back-link">← Voltar para o Login</a>
+      <img src="logo.png" alt="Logo PetConnect" class="register-logo">
+
+      <h2 class="register-title">Crie sua conta</h2>
+
+      <form>
+
+         <div class="register-input-group">
+          <label for="nome">Digite seu nome</label>
+          <div class="input-wrapper">
+            <input type="text" id="nome" required>
+          </div>
+        </div>
+        <div class="register-input-group">
+          <label for="email">E-mail</label>
+          <div class="input-wrapper">
+            <i class="icon">📧</i>
+            <input type="email" id="email" placeholder="nome@exemplo.com" required>
+          </div>
+        </div>
+
+        <div class="register-input-group">
+          <label for="senha">Senha</label>
+          <div class="input-wrapper">
+            <i class="icon">🔒</i>
+            <input type="password" id="senha" placeholder="********" required>
+          </div>
+        </div>
+
+        <div class="register-input-group">
+          <label for="confirmar">Confirme sua senha</label>
+          <div class="input-wrapper">
+            <i class="icon">🔒</i>
+            <input type="password" id="confirmar" placeholder="********" required>
+          </div>
+        </div>
+
+        <button type="submit" class="register-btn">Criar conta</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
