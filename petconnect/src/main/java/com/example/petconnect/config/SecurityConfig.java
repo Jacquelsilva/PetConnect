@@ -18,11 +18,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable()) 
+            .csrf(csrf -> csrf.disable()) // desativa o CSRF (útil para testes com Postman)
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll() 
-                .anyRequest().authenticated()
-            );
+                .requestMatchers("/api/auth/**").permitAll() // libera os endpoints de autenticação
+                .anyRequest().permitAll() // libera todo o resto também (só para teste)
+            )
+            .formLogin(login -> login.disable()) // desativa formulário padrão do Spring
+            .httpBasic(basic -> basic.disable()); // desativa autenticação HTTP básica
 
         return http.build();
     }
