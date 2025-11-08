@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="container">
-    <!-- MENU LATERAL -->
+   
     <aside class="sidebar">
       <div class="logo">
         <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="logo" width="60">
@@ -19,19 +19,16 @@
 
       <nav>
         <ul>
-          <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> Início</a></li>
-          <li><a href="animais.html"><i class="fa-solid fa-paw"></i> Animais</a></li>
-          <li><a href="ongs.html"><i class="fa-solid fa-handshake"></i> Parceiros</a></li>
-          <li><a href="#"><i class="fa-solid fa-circle-info"></i> Informações</a></li>
+          <li><a th:href="@{/}" class="active"><i class="fa-solid fa-house"></i> Início</a></li>
+          <li><a th:href="@{/animais}"><i class="fa-solid fa-paw"></i> Animais</a></li>
+          <li><a th:href="@{/ongs}"><i class="fa-solid fa-handshake"></i> Parceiros</a></li>
+          <li><a th:href="@{/informacoes}"><i class="fa-solid fa-circle-info"></i> Informações</a></li>
         </ul>
       </nav>
 
-      <div class="profile">
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="perfil">
-        <span>Perfil</span>
-      </div>
+      
     </aside>
-    <!-- CONTEÚDO PRINCIPAL -->
+  
     <main class="content">
       <header class="header">
         <div>
@@ -40,13 +37,12 @@
         </div>
       </header>
 
-      <!-- BARRA DE PESQUISA -->
       <div class="search-bar">
         <input type="text" placeholder="Pesquisar ONG..." />
         <button>🔍</button>
       </div>
 
-      <!-- FILTRO -->
+    
       <div class="filter-bar">
         <label for="tipo">Filtrar por:</label>
         <select id="tipo">
@@ -57,9 +53,9 @@
         </select>
       </div>
 
-      <!-- LISTA DE ONGs -->
+   
       <section class="ong-card-list">
-        <!-- ONG 1 -->
+        
         <div class="ong-card">
           <div class="ong-card-header">
             <h3>UPAR Indaiatuba</h3>
@@ -75,7 +71,7 @@
           <a href="https://www.instagram.com/uparindaiatuba" target="_blank" class="btn">Visitar ONG</a>
         </div>
 
-        <!-- ONG 2 -->
+       
         <div class="ong-card">
           <div class="ong-card-header">
             <h3>Anjos de Patas</h3>

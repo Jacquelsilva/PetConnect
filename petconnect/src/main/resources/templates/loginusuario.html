@@ -4,15 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login | PetConnect</title>
- <link rel="stylesheet" th:href="@{/style.css}">
-
+  <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
 
   <div class="login-page-container">
     <div class="login-card">
-      <div class="login-logo">
-        <img src="logo.png" alt="Logo PetConnect">
+      
+
+      <div class="login-header">
+        <img src="logo.png" alt="Logo PetConnect" class="login-logo">
+        <a th:href="@{/}" class="back-link">← Voltar para a página inicial</a>
       </div>
 
       <h2 class="login-title">
@@ -27,20 +29,20 @@
 
       <div class="login-divider"><span>Ou</span></div>
 
-      <form>
+      <form th:action="@{/auth/login}" method="post">
         <div class="login-input-group">
-          <label for="email">E-mail</label>
+          <label for="username">Usuário</label>
           <div class="input-wrapper">
             <i class="icon">📧</i>
-            <input type="email" id="email" placeholder="nome@exemplo.com" required>
+            <input type="text" id="username" name="username" placeholder="Digite seu usuário" required>
           </div>
         </div>
 
         <div class="login-input-group">
-          <label for="senha">Senha</label>
+          <label for="password">Senha</label>
           <div class="input-wrapper">
             <i class="icon">🔒</i>
-            <input type="password" id="senha" placeholder="********" required>
+            <input type="password" id="password" name="password" placeholder="********" required>
           </div>
         </div>
 
@@ -51,7 +53,7 @@
 
       <p class="register-text">
         Não possui uma conta?
-        <a href="cadastrousuario.html" class="register-link">Cadastre-se.</a>
+        <a th:href="@{/auth/register}" class="register-link">Cadastre-se.</a>
       </p>
     </div>
   </div>

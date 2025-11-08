@@ -5,51 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cadastro | PetConnect</title>
 
-<link rel="stylesheet" th:href="@{/style.css}">
-
+  <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
 
   <div class="register-page-container">
     <div class="register-card">
-      <a href="loginusuario.html" class="back-link">← Voltar para o Login</a>
+      <a th:href="@{/auth/login}" class="back-link">← Voltar para o Login</a>
       <img src="logo.png" alt="Logo PetConnect" class="register-logo">
 
       <h2 class="register-title">Crie sua conta</h2>
 
-      <form>
+      <form action="/auth/register" method="post" th:object="${user}">
 
-         <div class="register-input-group">
-          <label for="nome">Digite seu nome</label>
+        <div class="register-input-group">
+          <label for="username">Digite seu nome</label>
           <div class="input-wrapper">
-            <input type="text" id="nome" required>
+            <input type="text" id="username" name="username" placeholder="Seu nome" required>
           </div>
         </div>
+
         <div class="register-input-group">
           <label for="email">E-mail</label>
           <div class="input-wrapper">
             <i class="icon">📧</i>
-            <input type="email" id="email" placeholder="nome@exemplo.com" required>
+            <input type="email" id="email" name="email" placeholder="nome@exemplo.com" required>
           </div>
         </div>
 
         <div class="register-input-group">
-          <label for="senha">Senha</label>
+          <label for="password">Senha</label>
           <div class="input-wrapper">
             <i class="icon">🔒</i>
-            <input type="password" id="senha" placeholder="********" required>
+            <input type="password" id="password" name="password" placeholder="********" required>
           </div>
         </div>
 
         <div class="register-input-group">
-          <label for="confirmar">Confirme sua senha</label>
+          <label for="confirmPassword">Confirme sua senha</label>
           <div class="input-wrapper">
             <i class="icon">🔒</i>
-            <input type="password" id="confirmar" placeholder="********" required>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="********" required>
           </div>
         </div>
 
         <button type="submit" class="register-btn">Criar conta</button>
+
       </form>
     </div>
   </div>

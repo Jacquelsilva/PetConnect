@@ -2,28 +2,46 @@ package com.example.petconnect.service;
 
 import com.example.petconnect.model.User;
 import com.example.petconnect.repository.UserRepository;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
-    private final UserRepository repository;
-    private final PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserRepository userRepository;
 
-    public UserService(UserRepository repository, PasswordEncoder passwordEncoder) {
-        this.repository = repository;
-        this.passwordEncoder = passwordEncoder;
-    }
-
+   
     public User register(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return repository.save(user);
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            return null; 
+        }
+        return userRepository.save(user);
     }
 
+    
     public User login(String username, String password) {
-        return repository.findByUsername(username)
-                .filter(u -> passwordEncoder.matches(password, u.getPassword()))
-                .orElse(null);
+        User user = userRepository.findByUsername(username);
+        if (user != null && user.getPassword().equals(password)) {
+            return user;
+        }
+        return null;
+    }
+
+
+    public User getUserById(String id) {
+        return userRepository.findById(id).orElse(null);
+    }
+
+  
+    public User updateProfile(String id, User updatedUser) {
+        User existingUser = getUserById(id);
+        if (existingUser != null) {
+            existingUser.setNomeCompleto(updatedUser.getNomeCompleto());
+            existingUser.setTelefone(updatedUser.getTelefone());
+            existingUser.setEndereco(updatedUser.getEndereco());
+            return userRepository.save(existingUser);
+        }
+        return null;
     }
 }

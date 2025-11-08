@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Perfil do Usuário</title>
+</head>
+<body>
+  <h1>Perfil do Usuário</h1>
+
+  <form th:action="@{/perfil/editar}" method="post">
+    <label for="nomeCompleto">Nome Completo:</label><br />
+    <input
+      type="text"
+      id="nomeCompleto"
+      name="nomeCompleto"
+      th:value="${usuario.nomeCompleto}"
+      required
+    /><br /><br />
+
+    <label for="telefone">Telefone:</label><br />
+    <input
+      type="text"
+      id="telefone"
+      name="telefone"
+      th:value="${usuario.telefone}"
+      required
+    /><br /><br />
+
+    <label for="endereco">Endereço:</label><br />
+    <input
+      type="text"
+      id="endereco"
+      name="endereco"
+      th:value="${usuario.endereco}"
+      required
+    /><br /><br />
+
+    <button type="submit">Editar Perfil</button>
+    <button type="button" onclick="window.location.href='/'">Voltar</button>
+  </form>
+</body>
+</html>

@@ -1,48 +1,52 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro de ONG</title>
- <link rel="stylesheet" th:href="@{/style.css}">
+  <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
   <div class="ong-form-container">
     <h2>Cadastro de ONG</h2>
-    <form class="ong-form" action="#" method="post">
+
+    
+    <p th:if="${error}" th:text="${error}" style="color: red; text-align: center;"></p>
+
+    <form th:action="@{/auth/register/ongs}" method="post" th:object="${ong}">
       <div class="ong-form-group">
         <label for="nomeOng">Nome da ONG</label>
-        <input type="text" id="nomeOng" name="nomeOng" required>
+        <input type="text" id="nomeOng" th:field="*{nomeOng}" required>
       </div>
 
       <div class="ong-form-group">
         <label for="telefone">Telefone</label>
-        <input type="tel" id="telefone" name="telefone">
+        <input type="tel" id="telefone" th:field="*{telefone}">
       </div>
 
       <div class="ong-form-group">
         <label for="endereco">Endereço</label>
-        <input type="text" id="endereco" name="endereco">
+        <input type="text" id="endereco" th:field="*{endereco}">
       </div>
 
       <div class="ong-form-group">
         <label for="redeSocial">Rede Social / Site</label>
-        <input type="text" id="redeSocial" name="redeSocial">
+        <input type="text" id="redeSocial" th:field="*{redeSocial}">
       </div>
 
       <div class="ong-form-group">
-        <label for="responsavel">Nome do Responsável</label>
-        <input type="text" id="responsavel" name="responsavel">
+        <label for="responsavel">Responsável</label>
+        <input type="text" id="responsavel" th:field="*{responsavel}">
       </div>
 
       <div class="ong-form-group">
         <label for="email">E-mail</label>
-        <input type="email" id="email" name="email">
+        <input type="email" id="email" th:field="*{email}">
       </div>
 
       <div class="ong-form-group">
         <label for="descricao">Descrição da Missão</label>
-        <textarea id="descricao" name="descricao"></textarea>
+        <textarea id="descricao" th:field="*{descricao}"></textarea>
       </div>
 
       <button type="submit" class="ong-form-btn">Finalizar Cadastro</button>

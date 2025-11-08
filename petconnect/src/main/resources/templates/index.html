@@ -19,42 +19,54 @@
 
       <nav>
         <ul>
-          <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> Início</a></li>
-          <li><a href="animais.html"><i class="fa-solid fa-paw"></i> Animais</a></li>
-          <li><a href="ongs.html"><i class="fa-solid fa-handshake"></i> Parceiros</a></li>
-          <li><a href="#"><i class="fa-solid fa-circle-info"></i> Informações</a></li>
+          <li><a th:href="@{/}" class="active"><i class="fa-solid fa-house"></i> Início</a></li>
+          <li><a th:href="@{/animais}"><i class="fa-solid fa-paw"></i> Animais</a></li>
+          <li><a th:href="@{/ongs}"><i class="fa-solid fa-handshake"></i> Parceiros</a></li>
+          <li><a th:href="@{/informacoes}"><i class="fa-solid fa-circle-info"></i> Informações</a></li>
+          
+        
+          <li th:if="${user != null}">
+            <a th:href="@{'/perfil/' + ${user.id}}">
+              <i class="fa-solid fa-user"></i> Perfil
+            </a>
+          </li>
+
+          
+          <li th:if="${user == null}">
+            <a th:href="@{/auth/login}">
+              <i class="fa-solid fa-right-to-bracket"></i> Login
+            </a>
+          </li>
         </ul>
       </nav>
-
-      <div class="profile">
-        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="perfil">
-        <span>Perfil</span>
-      </div>
     </aside>
 
-    <!-- CONTEÚDO PRINCIPAL -->
     <main class="content">
-
-      <!-- SEÇÃO HERO -->
       <section class="hero">
-
-
         <h1>Conectando<br><span class="bold">Corações,</span> <span class="highlight">Salvando Vidas</span></h1>
         <p>
           Uma plataforma que une futuros tutores a ONGs de animais, facilitando adoções responsáveis e transformando vidas.
         </p>
 
-        <div class="hero-buttons">
-          <a href="loginusuario.html" class="btn-primary">
+        <div class="hero-buttons" th:if="${user == null}">
+          <a th:href="@{/auth/login}" class="btn-primary">
             <i class="fa-solid fa-heart"></i> Quero Adotar!
           </a>
-          <a href="cadastroong.html" class="btn-secondary">
+          <a th:href="@{/auth/register/ongs}" class="btn-secondary">
             <i class="fa-solid fa-handshake-angle"></i> Cadastrar ONG!
+          </a>
+        </div>
+
+        <div class="hero-buttons" th:if="${user != null}">
+          <a th:href="@{'/perfil/' + ${user.id}}" class="btn-primary">
+            <i class="fa-solid fa-user"></i> Meu Perfil
+          </a>
+          <a th:href="@{/auth/logout}" class="btn-secondary">
+            <i class="fa-solid fa-right-from-bracket"></i> Sair
           </a>
         </div>
       </section>
 
-      <!-- SEÇÃO ESTATÍSTICAS -->
       <section class="stats">
         <div class="stat">
           <i class="fa-solid fa-paw"></i>
