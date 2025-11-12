@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PetConnect - Perfil</title>
+  <meta charset="UTF-8">
+  <title>Cadastrar Animal | PetConnect</title>
   <link rel="stylesheet" th:href="@{/style.css}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <div class="container">
-    
     <aside class="sidebar">
   <div class="logo">
     <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="logo" width="60">
@@ -56,7 +54,7 @@
             </a>
           </li>
 
-        
+          <!-- Login -->
           <li th:if="${session.usuario == null and session.ong == null}">
             <a th:href="@{/auth/login}">
               <i class="fa-solid fa-right-to-bracket"></i> Login
@@ -69,57 +67,35 @@
               <i class="fa-solid fa-right-from-bracket"></i> Sair
             </a>
           </li>
-
-      <li th:if="${session.user != null}">
-        <a th:href="@{/auth/logout}">
-          <i class="fa-solid fa-right-from-bracket"></i> Sair
-        </a>
-      </li>
     </ul>
   </nav>
 </aside>
 
 
-    
-    <main class="content">
-      <section class="perfil-section">
-        <h1>Meu Perfil</h1>
+    <main class="conteudo">
+      <h1>Cadastrar Novo Animal</h1>
+      <p class="descricao">Preencha as informações abaixo para adicionar um novo pet disponível para adoção.</p>
 
-        <form th:action="@{/perfil/{id}/editar(id=${usuario.id})}" method="post" class="perfil-form">
+      <form th:action="@{/animais/salvar}" method="post" enctype="multipart/form-data" class="form-cadastro">
+  <input type="text" name="nome" placeholder="Nome do animal" required>
+  <input type="text" name="especie" placeholder="Espécie (Cachorro, Gato...)" required>
+  <input type="text" name="idade" placeholder="Idade aproximada" required>
+  <textarea name="descricao" placeholder="Descrição do animal" required></textarea>
 
-          <label for="nomeCompleto">Nome Completo:</label>
-          <input 
-            type="text" 
-            id="nomeCompleto" 
-            name="nomeCompleto" 
-            th:value="${usuario.nomeCompleto}" 
-            required
-          />
+  <div class="upload-box">
+    <label for="imagem">📸 Foto do Animal</label>
+    <input type="file" id="imagem" name="imagem" accept="image/*" required>
+    <img id="preview" src="" alt="Prévia da imagem" style="display:none;">
+  </div>
 
-          <label for="telefone">Telefone:</label>
-          <input 
-            type="text" 
-            id="telefone" 
-            name="telefone" 
-            th:value="${usuario.telefone}" 
-            required
-          />
+  <input type="text" name="ongId" placeholder="ID da ONG" required>
+  <button type="submit">Cadastrar</button>
+</form>
 
-          <label for="endereco">Endereço:</label>
-          <input 
-            type="text" 
-            id="endereco" 
-            name="endereco" 
-            th:value="${usuario.endereco}" 
-            required
-          />
 
-          <div class="botoes">
-            <button type="submit" class="btn-primary">Salvar Alterações</button>
-            <button type="button" class="btn-secondary" onclick="window.location.href='/'">Voltar</button>
-          </div>
-        </form>
-      </section>
+      <div th:if="${success}" class="alerta-sucesso">
+        <p th:text="${success}"></p>
+      </div>
     </main>
   </div>
 </body>

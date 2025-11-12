@@ -19,13 +19,16 @@ public class OngService {
         return repository.save(ong);
     }
 
-    
     public List<Ong> listarOngs() {
         return repository.findAll();
     }
 
-    
     public Ong getOngById(String id) {
         return repository.findById(id).orElse(null);
+    }
+
+    // 🔹 Novo método de login usando o repositório
+    public Ong login(String email, String senha) {
+        return repository.findByEmailAndSenha(email, senha);
     }
 }

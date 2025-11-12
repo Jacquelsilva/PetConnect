@@ -13,10 +13,11 @@ public class Suporte {
     private String email;
     private String mensagem;
 
-
+    // Getters e setters
     public String getId() {
         return id;
     }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -24,6 +25,7 @@ public class Suporte {
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -31,6 +33,7 @@ public class Suporte {
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
@@ -38,6 +41,7 @@ public class Suporte {
     public String getMensagem() {
         return mensagem;
     }
+
     public void setMensagem(String mensagem) {
         this.mensagem = mensagem;
     }

@@ -1,10 +1,11 @@
 package com.example.petconnect.repository;
 
-import com.example.petconnect.model.Ong;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import com.example.petconnect.model.Parceiro;
+
 @Repository
-public interface OngRepository extends MongoRepository<Ong, String> {
-    Ong findByEmailAndSenha(String email, String senha);
+public interface ParceiroRepository extends MongoRepository<Parceiro, String> {
+   
 }

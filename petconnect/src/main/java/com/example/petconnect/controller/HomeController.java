@@ -12,18 +12,4 @@ public String index() {
 }
 
 
-    @GetMapping("/animais")
-    public String animais() {
-        return "animais";
-    }
-
-    @GetMapping("/informacoes")
-    public String informacoes() {
-        return "informacoes";
-    }
-
-    @GetMapping("/ongs")
-    public String ongs() {
-        return "ongs";
-    }
 }

@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Parceiros - PetConnect</title>
+  <title th:text="${ong.nomeOng} + ' - Perfil ONG'">Perfil ONG</title>
   <link rel="stylesheet" th:href="@{/style.css}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <div class="container">
-
-    <!-- ===== MENU LATERAL ===== -->
     <aside class="sidebar">
       <div class="logo">
         <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="logo" width="60">
@@ -73,26 +71,31 @@
       </nav>
     </aside>
 
-    <!-- ===== CONTEÚDO PRINCIPAL ===== -->
-    <main class="content lista-ongs">
-      <section class="titulo">
-        <h1><i class="fa-solid fa-handshake"></i> ONGs Parceiras</h1>
-        <p>Conheça e apoie as ONGs que transformam vidas.</p>
+    <main class="content perfil-ong">
+      <section class="perfil-header">
+        <h1 th:text="${ong.nomeOng}">Nome da ONG</h1>
+        <p th:text="${ong.descricao}">Descrição da ONG</p>
       </section>
 
-      <section class="cards-ongs">
-        <div th:each="ong : ${ongs}" class="card-ong">
-          <div class="card-header">
-            <i class="fa-solid fa-paw icon-ong"></i>
-            <h2 th:text="${ong.nomeOng}">Nome da ONG</h2>
-          </div>
-          <p class="descricao" th:text="${ong.descricao}">Descrição da ONG</p>
-
-          <a class="btn-primary" th:href="@{/ongs/{id}(id=${ong.id})}">
-            <i class="fa-solid fa-eye"></i> Ver Perfil
-          </a>
-        </div>
+      <section class="perfil-detalhes">
+        <h2>Informações de Contato</h2>
+        <ul>
+          <li><strong>Responsável:</strong> <span th:text="${ong.responsavel}">Responsável</span></li>
+          <li><strong>Telefone:</strong> <span th:text="${ong.telefone}">Telefone</span></li>
+          <li><strong>Email:</strong> <span th:text="${ong.email}">Email</span></li>
+          <li><strong>Endereço:</strong> <span th:text="${ong.endereco}">Endereço</span></li>
+          <li><strong>Rede Social:</strong> 
+            <a th:href="${ong.redeSocial}" target="_blank" th:text="${ong.redeSocial}">Rede Social</a>
+          </li>
+        </ul>
       </section>
+
+      <!-- Botão Editar só aparece se a ONG logada for a dona do perfil -->
+      <a th:if="${session.ong != null and session.ong.id == ong.id}"
+         th:href="@{/ongs/editar/{id}(id=${ong.id})}"
+         class="btn-primary">
+        <i class="fa-solid fa-pen-to-square"></i> Editar Perfil
+      </a>
     </main>
   </div>
 </body>

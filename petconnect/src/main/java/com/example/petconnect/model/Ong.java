@@ -16,61 +16,32 @@ public class Ong {
     private String responsavel;
     private String email;
     private String descricao;
+    private String senha; // <-- aqui
 
- 
-    public String getId() {
-        return id;
-    }
-    public void setId(String id) {
-        this.id = id;
-    }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-    public String getNomeOng() {
-        return nomeOng;
-    }
-    public void setNomeOng(String nomeOng) {
-        this.nomeOng = nomeOng;
-    }
+    public String getNomeOng() { return nomeOng; }
+    public void setNomeOng(String nomeOng) { this.nomeOng = nomeOng; }
 
-    public String getTelefone() {
-        return telefone;
-    }
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+    public String getTelefone() { return telefone; }
+    public void setTelefone(String telefone) { this.telefone = telefone; }
 
-    public String getEndereco() {
-        return endereco;
-    }
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+    public String getEndereco() { return endereco; }
+    public void setEndereco(String endereco) { this.endereco = endereco; }
 
-    public String getRedeSocial() {
-        return redeSocial;
-    }
-    public void setRedeSocial(String redeSocial) {
-        this.redeSocial = redeSocial;
-    }
+    public String getRedeSocial() { return redeSocial; }
+    public void setRedeSocial(String redeSocial) { this.redeSocial = redeSocial; }
 
-    public String getResponsavel() {
-        return responsavel;
-    }
-    public void setResponsavel(String responsavel) {
-        this.responsavel = responsavel;
-    }
+    public String getResponsavel() { return responsavel; }
+    public void setResponsavel(String responsavel) { this.responsavel = responsavel; }
 
-    public String getEmail() {
-        return email;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
 
-    public String getDescricao() {
-        return descricao;
-    }
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+    public String getDescricao() { return descricao; }
+    public void setDescricao(String descricao) { this.descricao = descricao; }
+
+    public String getSenha() { return senha; }
+    public void setSenha(String senha) { this.senha = senha; }
 }
