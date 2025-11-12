@@ -14,7 +14,6 @@ public class ProfileController {
     @Autowired
     private UserService userService;
 
-    // Exibe o perfil do usuário
     @GetMapping("/{id}")
     public String showProfile(@PathVariable String id, Model model) {
         User usuario = userService.getUserById(id);
@@ -24,12 +23,12 @@ public class ProfileController {
             return "redirect:/auth/login";
         }
 
-        // 🔹 usa "usuario" para coincidir com o nome no HTML (perfil.html)
+    
         model.addAttribute("usuario", usuario);
         return "perfil";
     }
 
-    // Atualiza o perfil do usuário
+   
     @PostMapping("/{id}/editar")
     public String updateProfile(@PathVariable String id,
                                 @ModelAttribute User updatedUser,

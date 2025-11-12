@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="container">
-    <!-- SIDEBAR -->
+    
     <aside class="sidebar">
       <div class="logo">
         <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="logo" width="60">
@@ -54,7 +54,7 @@
       </nav>
     </aside>
 
-    <!-- CONTEÚDO PRINCIPAL -->
+   
     <main class="conteudo-principal">
       <div class="animais-header">
         <h1>Animais Disponíveis para Adoção</h1><br>
@@ -66,7 +66,7 @@
 </div>
 
 
-      <!-- Lista de animais -->
+      
       <div class="lista-animais">
         <div class="animal-card" th:each="animal : ${animais}">
           <img th:src="${animal.imagemUrl}" alt="Foto do animal">

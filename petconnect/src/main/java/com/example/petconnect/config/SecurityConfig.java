@@ -12,31 +12,30 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class SecurityConfig implements WebMvcConfigurer {
 
-    // 🔹 Bean para criptografar senhas
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    // 🔹 Configuração de segurança
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable()) // desativa CSRF (útil em testes)
+            .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**", "/uploads/**").permitAll() // libera autenticação e imagens
-                .anyRequest().permitAll() // libera todo o resto (ajuste depois se quiser restringir)
+                .requestMatchers("/api/auth/**", "/uploads/**").permitAll() 
+                .anyRequest().permitAll() 
             )
-            .formLogin(login -> login.disable()) // desativa login padrão
-            .httpBasic(basic -> basic.disable()); // desativa autenticação HTTP básica
+            .formLogin(login -> login.disable()) 
+            .httpBasic(basic -> basic.disable()); 
 
         return http.build();
     }
 
-    // 🔹 Libera acesso à pasta de uploads de imagens
+    
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // /uploads/** → arquivos salvos na pasta local "uploads/"
+        
         registry.addResourceHandler("/uploads/**")
                 .addResourceLocations("file:uploads/");
     }

@@ -14,7 +14,7 @@ public class Parceiro {
     private String senha;
     private String telefone;
     private String endereco;
-    private String descricao; // Adicionado para combinar com o service
+    private String descricao; 
 
     public Parceiro() {
     }

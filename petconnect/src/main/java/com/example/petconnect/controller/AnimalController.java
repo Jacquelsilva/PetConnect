@@ -20,7 +20,7 @@ public class AnimalController {
 
     private final AnimalService animalService;
 
-    // Caminho configurável para salvar as imagens
+    
     @Value("${upload.dir:uploads/}")
     private String uploadDir;
 
@@ -28,22 +28,22 @@ public class AnimalController {
         this.animalService = animalService;
     }
 
-    // 🔹 LISTAR TODOS OS ANIMAIS
+  
     @GetMapping
     public String listar(Model model) {
         List<Animal> animais = animalService.listarTodos();
         model.addAttribute("animais", animais);
-        return "animais"; // nome da página HTML
+        return "animais"; 
     }
 
-    // 🔹 EXIBIR FORMULÁRIO DE CADASTRO
+
     @GetMapping("/cadastro")
     public String formulario(Model model) {
         model.addAttribute("animal", new Animal());
-        return "cadastroanimais"; // página de cadastro
+        return "cadastroanimais"; 
     }
 
-    // 🔹 SALVAR NOVO ANIMAL (com upload de imagem)
+
     @PostMapping("/salvar")
     public String salvar(@ModelAttribute Animal animal,
                          @RequestParam("imagem") MultipartFile imagem,
@@ -51,24 +51,22 @@ public class AnimalController {
 
         try {
             if (imagem != null && !imagem.isEmpty()) {
-                // Cria diretório de uploads se não existir
+            
                 Path diretorio = Paths.get(uploadDir);
                 if (!Files.exists(diretorio)) {
                     Files.createDirectories(diretorio);
                 }
 
-                // Gera nome único para o arquivo
+             
                 String nomeArquivo = UUID.randomUUID() + "_" + imagem.getOriginalFilename();
                 Path caminhoArquivo = diretorio.resolve(nomeArquivo);
 
-                // Salva o arquivo fisicamente
                 Files.copy(imagem.getInputStream(), caminhoArquivo, StandardCopyOption.REPLACE_EXISTING);
 
-                // Define a URL pública da imagem
+              
                 animal.setImagemUrl("/uploads/" + nomeArquivo);
             }
 
-            // Salva o animal no banco
             animalService.salvar(animal);
             redirectAttributes.addFlashAttribute("success", "Animal cadastrado com sucesso!");
 

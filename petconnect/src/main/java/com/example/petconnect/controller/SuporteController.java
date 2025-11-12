@@ -17,11 +17,11 @@ public class SuporteController {
     public String enviarMensagem(@ModelAttribute Suporte suporte, Model model) {
         suporteService.salvarMensagem(suporte);
         model.addAttribute("success", "Mensagem enviada com sucesso! Entraremos em contato em breve 😊");
-        return "informacoes"; // nome da sua página HTML (informacoes.html)
+        return "informacoes"; 
     }
 
     @GetMapping("/informacoes")
     public String mostrarPagina() {
-        return "informacoes"; // Mostra a página inicial
+        return "informacoes"; 
     }
 }

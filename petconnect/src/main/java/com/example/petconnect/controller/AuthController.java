@@ -21,32 +21,29 @@ public class AuthController {
     @Autowired
     private OngService ongService;
 
-    // Página de login
     @GetMapping("/login")
     public String showLoginPage(Model model) {
         model.addAttribute("user", new User());
         return "loginusuario";
     }
 
-    // Processo de login (usuário ou ONG)
     @PostMapping("/login")
     public String login(@ModelAttribute("user") User user, Model model, HttpSession session) {
         try {
-            // 🔹 Login como usuário
+        
             User validUser = userService.login(user.getUsername(), user.getPassword());
             if (validUser != null) {
                 session.setAttribute("usuario", validUser);
                 return "redirect:/";
             }
 
-            // 🔹 Login como ONG
+           
             Ong validOng = ongService.login(user.getUsername(), user.getPassword());
             if (validOng != null) {
                 session.setAttribute("ong", validOng);
                 return "redirect:/";
             }
 
-            // Nenhum deu certo
             model.addAttribute("error", "E-mail, nome de usuário ou senha inválidos!");
             return "loginusuario";
 
@@ -61,7 +58,7 @@ public class AuthController {
         }
     }
 
-    // Registro de usuário
+
     @GetMapping("/register")
     public String showRegisterPage(Model model) {
         model.addAttribute("user", new User());
@@ -79,7 +76,7 @@ public class AuthController {
         }
     }
 
-    // Registro de ONG
+    
     @GetMapping("/register/ongs")
     public String showOngRegisterPage(Model model) {
         model.addAttribute("ong", new Ong());

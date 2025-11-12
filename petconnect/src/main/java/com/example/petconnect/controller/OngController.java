@@ -15,14 +15,13 @@ public class OngController {
     @Autowired
     private OngService ongService;
 
-    // Lista todas as ONGs
     @GetMapping
     public String listarOngs(Model model) {
         model.addAttribute("ongs", ongService.listarOngs());
         return "ongs";
     }
 
-    // Exibe o perfil de uma ONG específica
+  
     @GetMapping("/{id}")
     public String mostrarPerfilOng(@PathVariable("id") String id, Model model) {
         Ong ong = ongService.getOngById(id);
@@ -35,7 +34,7 @@ public class OngController {
         return "perfilong";
     }
 
-    // Exibe o formulário de edição
+  
     @GetMapping("/editar/{id}")
     public String editarPerfil(@PathVariable("id") String id, Model model, HttpSession session) {
         Ong ong = ongService.getOngById(id);
@@ -44,8 +43,8 @@ public class OngController {
             return "redirect:/ongs?notfound";
         }
 
-        // Verifica se a ONG logada é a mesma que está tentando editar
-        Ong ongLogada = (Ong) session.getAttribute("ong"); // 🔧 Corrigido: agora pega a ONG logada correta
+       
+        Ong ongLogada = (Ong) session.getAttribute("ong"); 
 
         if (ongLogada == null || !ongLogada.getId().equals(id)) {
             return "redirect:/ongs/" + id + "?semPermissao";
@@ -55,7 +54,7 @@ public class OngController {
         return "editarOng";
     }
 
-    // Salva as alterações da ONG
+  
     @PostMapping("/editar")
     public String salvarEdicao(@ModelAttribute("ong") Ong ongAtualizada, HttpSession session) {
         Ong ongLogada = (Ong) session.getAttribute("ong");
@@ -64,7 +63,7 @@ public class OngController {
             return "redirect:/ongs/" + ongAtualizada.getId() + "?semPermissao";
         }
 
-        // Atualiza os dados
+      
         ongLogada.setNomeOng(ongAtualizada.getNomeOng());
         ongLogada.setDescricao(ongAtualizada.getDescricao());
         ongLogada.setResponsavel(ongAtualizada.getResponsavel());
@@ -73,9 +72,8 @@ public class OngController {
         ongLogada.setRedeSocial(ongAtualizada.getRedeSocial());
         ongLogada.setEmail(ongAtualizada.getEmail());
 
-        // Salva no banco
         ongService.register(ongLogada);
-        session.setAttribute("ong", ongLogada); // 🔧 Atualiza a sessão
+        session.setAttribute("ong", ongLogada); 
 
         return "redirect:/ongs/" + ongLogada.getId() + "?editSuccess";
     }

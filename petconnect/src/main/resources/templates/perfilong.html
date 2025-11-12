@@ -90,7 +90,7 @@
         </ul>
       </section>
 
-      <!-- Botão Editar só aparece se a ONG logada for a dona do perfil -->
+     
       <a th:if="${session.ong != null and session.ong.id == ong.id}"
          th:href="@{/ongs/editar/{id}(id=${ong.id})}"
          class="btn-primary">

@@ -43,7 +43,6 @@
             </a>
           </li>
 
-          <!-- Login -->
           <li th:if="${session.usuario == null and session.ong == null}">
             <a th:href="@{/auth/login}">
               <i class="fa-solid fa-right-to-bracket"></i> Login
@@ -73,7 +72,7 @@
           facilitando adoções responsáveis e transformando vidas.
         </p>
 
-        <!-- Botões quando ninguém está logado -->
+       
         <div class="hero-buttons" th:if="${session.usuario == null and session.ong == null}">
           <a th:href="@{/auth/login}" class="btn-primary">
             <i class="fa-solid fa-heart"></i> Quero Adotar!
@@ -83,7 +82,7 @@
           </a>
         </div>
 
-        <!-- Botões quando usuário comum está logado -->
+        
         <div class="hero-buttons" th:if="${session.usuario != null}">
           <a th:href="@{/perfil/{id}(id=${session.usuario.id})}" class="btn-primary">
             <i class="fa-solid fa-user"></i> Meu Perfil
@@ -93,7 +92,7 @@
           </a>
         </div>
 
-        <!-- Botões quando uma ONG está logada -->
+       
         <div class="hero-buttons" th:if="${session.ong != null}">
           <a th:href="@{/ongs/{id}(id=${session.ong.id})}" class="btn-primary">
             <i class="fa-solid fa-building"></i> Perfil ONG

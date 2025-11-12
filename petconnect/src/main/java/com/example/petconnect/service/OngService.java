@@ -27,7 +27,7 @@ public class OngService {
         return repository.findById(id).orElse(null);
     }
 
-    // 🔹 Novo método de login usando o repositório
+   
     public Ong login(String email, String senha) {
         return repository.findByEmailAndSenha(email, senha);
     }

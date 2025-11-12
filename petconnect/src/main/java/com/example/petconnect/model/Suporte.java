@@ -13,7 +13,6 @@ public class Suporte {
     private String email;
     private String mensagem;
 
-    // Getters e setters
     public String getId() {
         return id;
     }

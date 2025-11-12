@@ -16,7 +16,7 @@ public class Ong {
     private String responsavel;
     private String email;
     private String descricao;
-    private String senha; // <-- aqui
+    private String senha; 
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
