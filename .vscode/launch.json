@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "PetconnectApplication",
+            "request": "launch",
+            "mainClass": "com.example.petconnect.PetconnectApplication"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-PetconnectApplication<petconnect>",
             "request": "launch",
             "cwd": "${workspaceFolder}",

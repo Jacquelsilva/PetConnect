@@ -1,22 +1,21 @@
-# Usando JDK 21 leve
 FROM eclipse-temurin:21-jdk-alpine
 
 WORKDIR /app
 
-# Copiar Maven Wrapper (para builds com ./mvnw)
-COPY ./petconnect/petconnect/mvnw ./mvnw
-COPY ./petconnect/petconnect/.mvn ./.mvn
+# Copia somente arquivos essenciais primeiro (melhor cache)
+COPY pom.xml .
+COPY .mvn ./.mvn
+COPY mvnw .
+COPY mvnw.cmd .
 
-# Garantir permissão de execução
-RUN chmod +x ./mvnw
+# Baixa dependências
+RUN ./mvnw -B dependency:go-offline
 
-# Copiar POM e código-fonte
-COPY ./petconnect/petconnect/pom.xml ./pom.xml
-COPY ./petconnect/petconnect/src ./src
+# Agora copia o código fonte
+COPY src ./src
 
-# Construir o projeto
-RUN ./mvnw clean package -DskipTests || mvn clean package -DskipTests
+# Faz o build
+RUN ./mvnw -B package -DskipTests
 
-EXPOSE 8080
-
-CMD ["java","-jar","target/petconnect-0.0.1-SNAPSHOT.jar"]
+# Executa o jar
+CMD ["java", "-jar", "target/petconnect-0.0.1-SNAPSHOT.jar"]
