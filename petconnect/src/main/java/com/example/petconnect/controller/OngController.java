@@ -51,7 +51,7 @@ public class OngController {
         }
 
         model.addAttribute("ong", ong);
-        return "editarOng";
+        return "editarong";
     }
 
   

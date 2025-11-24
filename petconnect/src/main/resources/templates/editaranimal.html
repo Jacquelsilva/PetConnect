@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editar Perfil da ONG</title>
-
+  <title>Cadastrar Animal | PetConnect</title>
   <link rel="stylesheet" th:href="@{/style.css}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <div class="container">
-   
     <aside class="sidebar">
   <div class="logo">
     <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="logo" width="60">
@@ -57,7 +54,7 @@
             </a>
           </li>
 
-         
+          
           <li th:if="${session.usuario == null and session.ong == null}">
             <a th:href="@{/auth/login}">
               <i class="fa-solid fa-right-to-bracket"></i> Login
@@ -75,37 +72,29 @@
 </aside>
 
 
+    <main class="conteudo">
+      <h1>Editar Animal</h1>
+      <p class="descricao">Altere as informações que desejar do animal</p>
 
-    <main class="content">
-      <div class="form-card">
-        <h1><i class="fa-solid fa-pen-to-square"></i> Editar Perfil da ONG</h1>
+      <form th:action="@{/animais/salvar}" method="post" enctype="multipart/form-data" class="form-cadastro">
+  <input type="text" name="nome" placeholder="Nome do animal" required>
+  <input type="text" name="especie" placeholder="Espécie (Cachorro, Gato...)" required>
+  <input type="text" name="idade" placeholder="Idade aproximada" required>
+  <textarea name="descricao" placeholder="Descrição do animal" required></textarea>
 
-        <form th:action="@{/ongs/editar}" th:object="${ong}" method="post">
-          <input type="hidden" th:field="*{id}">
+  <div class="upload-box">
+    <label for="imagem">📸 Foto do Animal</label>
+    <input type="file" id="imagem" name="imagem" accept="image/*" required>
+    <img id="preview" src="" alt="Prévia da imagem" style="display:none;">
+  </div>
 
-          <label for="nomeOng">Nome da ONG</label>
-          <input type="text" id="nomeOng" th:field="*{nomeOng}" required>
+  <input type="text" name="ongId" placeholder="ID da ONG" required>
+  <button type="submit">Salvar Alterações</button>
+</form>
 
-          <label for="descricao">Descrição</label>
-          <textarea id="descricao" rows="3" th:field="*{descricao}" required></textarea>
 
-          <label for="responsavel">Responsável</label>
-          <input type="text" id="responsavel" th:field="*{responsavel}" required>
-
-          <label for="telefone">Telefone</label>
-          <input type="text" id="telefone" th:field="*{telefone}" required>
-
-          <label for="email">Email</label>
-          <input type="email" id="email" th:field="*{email}" required>
-
-          <label for="endereco">Endereço</label>
-          <input type="text" id="endereco" th:field="*{endereco}" required>
-
-          <label for="redeSocial">Rede Social</label>
-          <input type="url" id="redeSocial" th:field="*{redeSocial}">
-
-          <button type="submit" class="btn-primary">Salvar Alterações</button>
-        </form>
+      <div th:if="${success}" class="alerta-sucesso">
+        <p th:text="${success}"></p>
       </div>
     </main>
   </div>

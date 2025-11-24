@@ -1477,3 +1477,64 @@ button:hover {
     .back-link:hover {
       text-decoration: underline;
     }
+    
+   /* Container dos botões */
+.acoes-ong, .acoes-adocao {
+  margin-top: 12px;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+/* Estilo base para todos os botões */
+.btn-editar, .btn-excluir, .btn-adotar {
+  padding: 9px 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+
+  transition: 
+      opacity 0.25s ease,
+      transform 0.2s ease,
+      box-shadow 0.25s ease;
+}
+
+/* Botão EDITAR – segue paleta verde clara */
+.btn-editar {
+  background: linear-gradient(90deg, #3cbcb4, #2fa27d);
+  color: white;
+  box-shadow: 0 3px 6px rgba(47, 162, 125, 0.25);
+}
+
+.btn-editar:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+
+/* Botão EXCLUIR – mantém vermelho, mas agora no estilo PetConnect */
+.btn-excluir {
+  background: linear-gradient(90deg, #ff7979, #ff5252);
+  color: white;
+  box-shadow: 0 3px 6px rgba(255, 82, 82, 0.25);
+}
+
+.btn-excluir:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+
+/* Botão ADOTAR – verde destaque, seguindo o tema */
+.btn-adotar {
+  background: linear-gradient(90deg, #2fa27d, #3cbcb4);
+  color: white;
+  box-shadow: 0 3px 6px rgba(47, 162, 125, 0.25);
+}
+
+.btn-adotar:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}

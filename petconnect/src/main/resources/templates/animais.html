@@ -30,21 +30,18 @@
             </a>
           </li>
 
-        
           <li th:if="${session.ong != null}">
             <a th:href="@{/ongs/{id}(id=${session.ong.id})}">
               <i class="fa-solid fa-building"></i> Minha ONG
             </a>
           </li>
 
-          
           <li th:if="${session.usuario == null and session.ong == null}">
             <a th:href="@{/auth/login}">
               <i class="fa-solid fa-right-to-bracket"></i> Login
             </a>
           </li>
 
-          
           <li th:if="${session.usuario != null or session.ong != null}">
             <a th:href="@{/auth/logout}">
               <i class="fa-solid fa-right-from-bracket"></i> Sair
@@ -54,30 +51,54 @@
       </nav>
     </aside>
 
-   
     <main class="conteudo-principal">
       <div class="animais-header">
         <h1>Animais Disponíveis para Adoção</h1><br>
       </div>
+
+      <!-- Botão para cadastrar novo animal (somente ONG logada) -->
       <div th:if="${session.ong != null}" class="botao-container">
-  <a class="botao-cadastrar" th:href="@{/animais/cadastro}">
-    + Cadastrar Novo Animal
-  </a>
-</div>
+        <a class="botao-cadastrar" th:href="@{/animais/cadastro}">
+          + Cadastrar Novo Animal
+        </a>
+      </div>
 
-
-      
       <div class="lista-animais">
         <div class="animal-card" th:each="animal : ${animais}">
           <img th:src="${animal.imagemUrl}" alt="Foto do animal">
+
           <div class="info-animal">
             <h3 th:text="${animal.nome}"></h3>
             <p><strong>Espécie:</strong> <span th:text="${animal.especie}"></span></p>
             <p><strong>Idade:</strong> <span th:text="${animal.idade}"></span></p>
             <p th:text="${animal.descricao}"></p>
           </div>
+
+          <!-- BOTÕES EDIÇÃO/EXCLUSÃO (somente ONG logada) -->
+          <div th:if="${session.ong != null}" class="acoes-ong">
+            <a class="btn-editar"
+               th:href="@{/animais/editar/{id}(id=${animal.id})}">
+              <i class="fa-solid fa-pen"></i> Editar
+            </a>
+
+            <a class="btn-excluir"
+               th:href="@{/animais/excluir/{id}(id=${animal.id})}"
+               onclick="return confirm('Tem certeza que deseja excluir este animal?');">
+              <i class="fa-solid fa-trash"></i> Excluir
+            </a>
+          </div>
+
+          <!-- BOTÃO QUERO ADOTAR (somente usuário) -->
+          <div th:if="${session.usuario != null}" class="acoes-adocao">
+            <a class="btn-adotar"
+               th:href="@{/adocao/solicitar/{id}(id=${animal.id})}">
+              ❤️ Quero Adotar
+            </a>
+          </div>
+
         </div>
       </div>
+      
     </main>
   </div>
 </body>
