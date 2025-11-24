@@ -1,4 +1,5 @@
-FROM eclipse-temurin:21-jdk-alpine
+# -------- STAGE 1: Build --------
+FROM eclipse-temurin:21-jdk-alpine AS build
 
 WORKDIR /app
 
@@ -7,13 +8,17 @@ COPY petconnect/.mvn ./.mvn
 COPY petconnect/mvnw .
 COPY petconnect/mvnw.cmd .
 
-# Corrige permissão
 RUN chmod +x mvnw
-
-RUN ./mvnw -B dependency:go-offline
 
 COPY petconnect/src ./src
 
 RUN ./mvnw -B package -DskipTests
 
-CMD ["java", "-jar", "target/*.jar"]
+# -------- STAGE 2: Run --------
+FROM eclipse-temurin:21-jre-alpine
+
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
+
+CMD ["java", "-jar", "app.jar"]
