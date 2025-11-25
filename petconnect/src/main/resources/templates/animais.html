@@ -81,11 +81,14 @@
               <i class="fa-solid fa-pen"></i> Editar
             </a>
 
-            <a class="btn-excluir"
-               th:href="@{/animais/excluir/{id}(id=${animal.id})}"
-               onclick="return confirm('Tem certeza que deseja excluir este animal?');">
-              <i class="fa-solid fa-trash"></i> Excluir
-            </a>
+            <form th:action="@{/animais/excluir/{id}(id=${animal.id})}" method="post" style="display:inline;">
+             <button type="submit" class="btn-excluir"
+                onclick="return confirm('Tem certeza que deseja excluir este animal?');">
+                <i class="fa-solid fa-trash"></i> Excluir
+               </button>
+            </form>
+
+
           </div>
 
           
