@@ -2,101 +2,79 @@
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Cadastrar Animal | PetConnect</title>
+  <title>Editar Animal | PetConnect</title>
   <link rel="stylesheet" th:href="@{/style.css}">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
   <div class="container">
     <aside class="sidebar">
-  <div class="logo">
-    <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="logo" width="60">
-    <h2 class="brand">PetConnect</h2>
-    <small>Conectando corações</small>
-  </div>
+      <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="logo" width="60">
+        <h2 class="brand">PetConnect</h2>
+        <small>Conectando corações</small>
+      </div>
 
-  <nav>
-    <ul>
-      <li>
-        <a th:href="@{/}" class="active">
-          <i class="fa-solid fa-house"></i> Início
-        </a>
-      </li>
+      <nav>
+        <ul>
+          <li><a th:href="@{/}" class="active"><i class="fa-solid fa-house"></i> Início</a></li>
+          <li><a th:href="@{/animais}"><i class="fa-solid fa-paw"></i> Animais</a></li>
+          <li><a th:href="@{/ongs}"><i class="fa-solid fa-handshake"></i> Parceiros</a></li>
+          <li><a th:href="@{/informacoes}"><i class="fa-solid fa-circle-info"></i> Informações</a></li>
 
-      <li>
-        <a th:href="@{/animais}">
-          <i class="fa-solid fa-paw"></i> Animais
-        </a>
-      </li>
-
-      <li>
-        <a th:href="@{/ongs}">
-          <i class="fa-solid fa-handshake"></i> Parceiros
-        </a>
-      </li>
-
-      <li>
-        <a th:href="@{/informacoes}">
-          <i class="fa-solid fa-circle-info"></i> Informações
-        </a>
-      </li>
-
-      <li th:if="${session.usuario != null}">
-            <a th:href="@{/perfil/{id}(id=${session.usuario.id})}">
-              <i class="fa-solid fa-user"></i> Meu Perfil
-            </a>
+          <li th:if="${session.usuario != null}">
+            <a th:href="@{/perfil/{id}(id=${session.usuario.id})}"><i class="fa-solid fa-user"></i> Meu Perfil</a>
           </li>
 
-        
           <li th:if="${session.ong != null}">
-            <a th:href="@{/ongs/{id}(id=${session.ong.id})}">
-              <i class="fa-solid fa-building"></i> Minha ONG
-            </a>
+            <a th:href="@{/ongs/{id}(id=${session.ong.id})}"><i class="fa-solid fa-building"></i> Minha ONG</a>
           </li>
 
-          
           <li th:if="${session.usuario == null and session.ong == null}">
-            <a th:href="@{/auth/login}">
-              <i class="fa-solid fa-right-to-bracket"></i> Login
-            </a>
+            <a th:href="@{/auth/login}"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
           </li>
 
-          
           <li th:if="${session.usuario != null or session.ong != null}">
-            <a th:href="@{/auth/logout}">
-              <i class="fa-solid fa-right-from-bracket"></i> Sair
-            </a>
+            <a th:href="@{/auth/logout}"><i class="fa-solid fa-right-from-bracket"></i> Sair</a>
           </li>
-    </ul>
-  </nav>
-</aside>
-
+        </ul>
+      </nav>
+    </aside>
 
     <main class="conteudo">
       <h1>Editar Animal</h1>
       <p class="descricao">Altere as informações que desejar do animal</p>
 
-      <form th:action="@{/animais/salvar}" method="post" enctype="multipart/form-data" class="form-cadastro">
-  <input type="text" name="nome" placeholder="Nome do animal" required>
-  <input type="text" name="especie" placeholder="Espécie (Cachorro, Gato...)" required>
-  <input type="text" name="idade" placeholder="Idade aproximada" required>
-  <textarea name="descricao" placeholder="Descrição do animal" required></textarea>
+      
+      <form th:action="@{/animais/editar/{id}(id=${animal.id})}" th:object="${animal}" method="post" enctype="multipart/form-data" class="form-cadastro">
 
-  <div class="upload-box">
-    <label for="imagem">📸 Foto do Animal</label>
-    <input type="file" id="imagem" name="imagem" accept="image/*" required>
-    <img id="preview" src="" alt="Prévia da imagem" style="display:none;">
-  </div>
+        <input type="text" th:field="*{nome}" placeholder="Nome do animal" required>
 
-  <input type="text" name="ongId" placeholder="ID da ONG" required>
-  <button type="submit">Salvar Alterações</button>
-</form>
+        <input type="text" th:field="*{especie}" placeholder="Espécie (Cachorro, Gato...)" required>
 
+        <input type="text" th:field="*{idade}" placeholder="Idade aproximada" required>
+
+        <textarea th:field="*{descricao}" placeholder="Descrição do animal" required></textarea>
+
+        <div class="upload-box">
+          <label for="imagem">📸 Foto do Animal</label>
+          <input type="file" id="imagem" name="imagem" accept="image/*">
+
+          
+          <img th:if="${animal.imagemUrl != null}" th:src="${animal.imagemUrl}" alt="Imagem atual" style="max-width:150px;margin-top:10px;">
+        </div>
+
+        <input type="text" th:field="*{ongId}" placeholder="ID da ONG" required>
+
+        <button type="submit">Salvar Alterações</button>
+      </form>
 
       <div th:if="${success}" class="alerta-sucesso">
         <p th:text="${success}"></p>
       </div>
+
     </main>
   </div>
 </body>
 </html>
+

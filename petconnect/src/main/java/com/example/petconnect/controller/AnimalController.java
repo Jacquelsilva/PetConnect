@@ -20,7 +20,6 @@ public class AnimalController {
 
     private final AnimalService animalService;
 
-    
     @Value("${upload.dir:uploads/}")
     private String uploadDir;
 
@@ -28,22 +27,21 @@ public class AnimalController {
         this.animalService = animalService;
     }
 
-  
     @GetMapping
     public String listar(Model model) {
         List<Animal> animais = animalService.listarTodos();
         model.addAttribute("animais", animais);
-        return "animais"; 
+        return "animais";
     }
 
-
+   
     @GetMapping("/cadastro")
     public String formulario(Model model) {
         model.addAttribute("animal", new Animal());
-        return "cadastroanimais"; 
+        return "cadastroanimais";
     }
 
-
+  
     @PostMapping("/salvar")
     public String salvar(@ModelAttribute Animal animal,
                          @RequestParam("imagem") MultipartFile imagem,
@@ -51,19 +49,16 @@ public class AnimalController {
 
         try {
             if (imagem != null && !imagem.isEmpty()) {
-            
+
                 Path diretorio = Paths.get(uploadDir);
                 if (!Files.exists(diretorio)) {
                     Files.createDirectories(diretorio);
                 }
 
-             
                 String nomeArquivo = UUID.randomUUID() + "_" + imagem.getOriginalFilename();
                 Path caminhoArquivo = diretorio.resolve(nomeArquivo);
-
                 Files.copy(imagem.getInputStream(), caminhoArquivo, StandardCopyOption.REPLACE_EXISTING);
 
-              
                 animal.setImagemUrl("/uploads/" + nomeArquivo);
             }
 
@@ -73,6 +68,77 @@ public class AnimalController {
         } catch (IOException e) {
             e.printStackTrace();
             redirectAttributes.addFlashAttribute("error", "Erro ao salvar imagem do animal.");
+        }
+
+        return "redirect:/animais";
+    }
+
+    
+   @PostMapping("/excluir/{id}")
+public String excluir(@PathVariable String id, RedirectAttributes redirectAttributes) {
+    try {
+        animalService.deletar(id); 
+        redirectAttributes.addFlashAttribute("success", "Animal excluído com sucesso!");
+    } catch (Exception e) {
+        redirectAttributes.addFlashAttribute("error", "Erro ao excluir animal.");
+    }
+    return "redirect:/animais";
+}
+
+
+    @GetMapping("/editar/{id}")
+    public String editarFormulario(@PathVariable String id, Model model) {
+
+        Animal animal = animalService.buscarPorId(id);
+
+        if (animal == null) {
+            return "redirect:/animais";
+        }
+
+        model.addAttribute("animal", animal);
+        return "editaranimal"; 
+    }
+
+    @PostMapping("/editar/{id}")
+    public String atualizar(@PathVariable String id,
+                            @ModelAttribute Animal atualizado,
+                            @RequestParam(value = "imagem", required = false) MultipartFile novaImagem,
+                            RedirectAttributes redirectAttributes) {
+
+        try {
+            Animal existente = animalService.buscarPorId(id);
+
+            if (existente == null) {
+                redirectAttributes.addFlashAttribute("error", "Animal não encontrado.");
+                return "redirect:/animais";
+            }
+
+            existente.setNome(atualizado.getNome());
+            existente.setIdade(atualizado.getIdade());
+            existente.setEspecie(atualizado.getEspecie());
+            existente.setDescricao(atualizado.getDescricao());
+
+            if (novaImagem != null && !novaImagem.isEmpty()) {
+
+                Path diretorio = Paths.get(uploadDir);
+                if (!Files.exists(diretorio)) {
+                    Files.createDirectories(diretorio);
+                }
+
+                String nomeArquivo = UUID.randomUUID() + "_" + novaImagem.getOriginalFilename();
+                Path caminhoArquivo = diretorio.resolve(nomeArquivo);
+
+                Files.copy(novaImagem.getInputStream(), caminhoArquivo, StandardCopyOption.REPLACE_EXISTING);
+
+                existente.setImagemUrl("/uploads/" + nomeArquivo);
+            }
+
+            animalService.salvar(existente);
+            redirectAttributes.addFlashAttribute("success", "Animal atualizado com sucesso!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            redirectAttributes.addFlashAttribute("error", "Erro ao atualizar animal.");
         }
 
         return "redirect:/animais";

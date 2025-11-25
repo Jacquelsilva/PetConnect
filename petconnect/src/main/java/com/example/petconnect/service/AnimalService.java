@@ -3,6 +3,7 @@ package com.example.petconnect.service;
 import com.example.petconnect.model.Animal;
 import com.example.petconnect.repository.AnimalRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -24,5 +25,14 @@ public class AnimalService {
 
     public List<Animal> listarPorOng(String ongId) {
         return repository.findByOngId(ongId);
+    }
+
+    
+    public Animal buscarPorId(String id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    public void deletar(String id) {
+        repository.deleteById(id);
     }
 }
