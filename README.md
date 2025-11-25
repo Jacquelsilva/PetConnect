@@ -25,7 +25,11 @@
        -> HTML: Linguagem usada para estruturar e organizar o conteúdo das páginas web. Define elementos como textos, títulos, links, botões, tabelas e formulários.
        -> CSS : Linguagem de estilização responsável pelo visual da interface. Controla cores, fontes, espaçamentos, layout, responsividade e aparência geral das páginas.
       -> JavaScript: Linguagem de programação que adiciona interatividade ao site. Permite criar comportamentos dinâmicos, validações, animações, atualizações de conteúdo sem recarregar a página e comunicação com o back-end.
+<<<<<<< HEAD
       -> thymeleaf: Template engine usada no Spring Boot para gerar páginas HTML dinâmicas. Permite integrar variáveis do back-end diretamente no HTML de forma simples, criando páginas que exibem dados da aplicação.
+=======
+      ->thymeleaf: Template engine usada no Spring Boot para gerar páginas HTML dinâmicas. Permite integrar variáveis do back-end diretamente no HTML de forma simples, criando páginas que exibem dados da aplicação.
+>>>>>>> 784ab16c67cf13be1efda16e94587051a817fc83
 
   3.Funcionalidades
   
